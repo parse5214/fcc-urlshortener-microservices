@@ -3,13 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const url = require('url');
+const urlParser = require('url');
 const bodyParser = require('body-parser');
 const dns = require('dns');
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true,
+mongoose.connect(`${process.env.DB_URI}`, {useNewUrlParser: true,
 useUnifiedTopology: true});
 
 const schema = new mongoose.Schema({url: 'string'});
@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 // Your first API endpoint
 app.post('/api/shorturl', function(req, res) {
   const bodyUrl = req.body.url;
-  dns.lookup(url.parse(bodyUrl).hostname, function(err, address) {
+  dns.lookup(urlParser.parse(bodyUrl).hostname, function(err, address) {
     if(!address) res.json({error: 'invalid url'});
     else{
       const originalUrl = new Url({url: bodyUrl});
