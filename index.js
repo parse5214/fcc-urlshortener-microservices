@@ -9,7 +9,11 @@ const dns = require('dns');
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
+
+console.log("The duck you looking at\n")
 console.log(process.env.DB_URI);
+console.log("I don't get i\n");
+
 mongoose.connect(`${process.env.DB_URI}`, {useNewUrlParser: true,
 useUnifiedTopology: true});
 
