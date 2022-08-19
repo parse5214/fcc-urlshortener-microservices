@@ -10,8 +10,7 @@ const dns = require('dns');
 // Basic Configuration
 const port = process.env.PORT || 3000;
 
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true,
-useUnifiedTopology: true});
+mongoose.connect(`${process.env.DB_URI}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const schema = new mongoose.Schema({url: 'string'});
 const Url = mongoose.model('Url', schema);
